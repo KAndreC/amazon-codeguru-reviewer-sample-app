@@ -1,5 +1,4 @@
 name: sync up to codecommit
-
 on:
     push:
         tags-ignore:
@@ -14,6 +13,7 @@ jobs:
             uses: actions/checkout@main
             with:
               fetch-depth: 0
+
           - name: Configure AWS Credentials
             uses: aws-actions/configure-aws-credentials@main
             with:
@@ -21,7 +21,7 @@ jobs:
               aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
               aws-region: us-east-1
           - name: Sync up to CodeCommit
-            uses: KAndreC/amazon-codeguru-reviewer-sample-app@python
+            uses: KAndreC/amazon-codeguru-reviewer-sample-app@feature/CICDPythonCodeguru
             with:
               repository_name: DemoPythonRepo
               aws_region: us-east-1
