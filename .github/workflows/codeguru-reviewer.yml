@@ -1,6 +1,9 @@
 name: Analyze with CodeGuru Reviewer
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 permissions:
     id-token: write
