@@ -4,7 +4,9 @@ on:
         tags-ignore:
             - '*'
         branches:
-            - '*'
+            - feature/CICDPythonCodeguru
+        paths:
+          - '.github/workflows/**'
 jobs:
     sync:
         runs-on: ubuntu-latest
