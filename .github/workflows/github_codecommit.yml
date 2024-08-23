@@ -1,8 +1,8 @@
-name: sync up to codecommit
+name: sync up
 on:
     push:
         branches:
-            - feature/CICDPythonCodeguru
+            - main
 jobs:
     sync:
         runs-on: ubuntu-latest
