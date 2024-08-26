@@ -108,3 +108,4 @@ def save_kinesis_record(kinesis_client, record):
         kinesis_client.put_records(record)
     except:
         raise
+print("Hello")

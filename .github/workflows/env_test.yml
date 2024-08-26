@@ -1,0 +1,56 @@
+name: env_test
+
+on: 
+  push:
+    branches: 
+        - feature/CICDPythonCodeguru
+
+jobs:
+  env_create:
+
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create .env file DEV
+        if: ${{ github.ref_name == 'DEV'}}
+        uses: SpicyPizza/create-envfile@v2.0.3
+        with:
+          envkey_REACT_APP_IDENTITY_SERVER_HOST: ${{ secrets.REACT_APP_IDENTITY_SERVER_HOST_DEV }}
+          envkey_REACT_APP_INVOICING_SERVER_HOST: ${{ secrets.REACT_APP_INVOICING_SERVER_HOST_DEV }}
+          envkey_REACT_APP_INVOICING_CENTER_HOST: ${{ secrets.REACT_APP_INVOICING_CENTER_HOST_DEV }}
+          envkey_REACT_APP_ENCRYPT_KEY: ${{ secrets.REACT_APP_ENCRYPT_KEY }}
+          envkey_REACT_APP_ENCRYPT_IV: ${{ secrets.REACT_APP_ENCRYPT_IV }}
+          fail_on_empty: true
+      - name: Create .env file QA
+        if: ${{ github.ref_name == 'feature/CICDPythonCodeguru'}}
+        uses: SpicyPizza/create-envfile@v2.0.3
+        with:
+          envkey_REACT_APP_IDENTITY_SERVER_HOST: ${{ secrets.REACT_APP_IDENTITY_SERVER_HOST_QA }}
+          envkey_REACT_APP_INVOICING_SERVER_HOST: ${{ secrets.REACT_APP_INVOICING_SERVER_HOST_QA }}
+          envkey_REACT_APP_INVOICING_CENTER_HOST: ${{ secrets.REACT_APP_INVOICING_CENTER_HOST_QA }}
+          envkey_REACT_APP_ENCRYPT_KEY: ${{ secrets.REACT_APP_ENCRYPT_KEY }}
+          envkey_REACT_APP_ENCRYPT_IV: ${{ secrets.REACT_APP_ENCRYPT_IV }}
+          fail_on_empty: true
+
+      - name: Create .env file PREPROD
+        if: ${{ github.ref_name == 'PREPROD'}}
+        uses: SpicyPizza/create-envfile@v2.0.3
+        with:
+          envkey_REACT_APP_IDENTITY_SERVER_HOST: ${{ secrets.REACT_APP_IDENTITY_SERVER_HOST_PREPROD }}
+          envkey_REACT_APP_INVOICING_SERVER_HOST: ${{ secrets.REACT_APP_INVOICING_SERVER_HOST_PREPROD }}
+          envkey_REACT_APP_INVOICING_CENTER_HOST: ${{ secrets.REACT_APP_INVOICING_CENTER_HOST_PREPROD }}
+          envkey_REACT_APP_ENCRYPT_KEY: ${{ secrets.REACT_APP_ENCRYPT_KEY }}
+          envkey_REACT_APP_ENCRYPT_IV: ${{ secrets.REACT_APP_ENCRYPT_IV }}
+          fail_on_empty: true
+      - name: Create .env file PROD
+        if: ${{ github.ref_name == 'PROD'}}
+        uses: SpicyPizza/create-envfile@v2.0.3
+        with:
+          envkey_REACT_APP_IDENTITY_SERVER_HOST: ${{ secrets.REACT_APP_IDENTITY_SERVER_HOST_PROD }}
+          envkey_REACT_APP_INVOICING_SERVER_HOST: ${{ secrets.REACT_APP_INVOICING_SERVER_HOST_PROD }}
+          envkey_REACT_APP_INVOICING_CENTER_HOST: ${{ secrets.REACT_APP_INVOICING_CENTER_HOST_PROD }}
+          envkey_REACT_APP_ENCRYPT_KEY: ${{ secrets.REACT_APP_ENCRYPT_KEY }}
+          envkey_REACT_APP_ENCRYPT_IV: ${{ secrets.REACT_APP_ENCRYPT_IV }}
+          fail_on_empty: true
