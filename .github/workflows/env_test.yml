@@ -6,9 +6,11 @@ on:
         - feature/CICDPythonCodeguru
 
 jobs:
-  build:
+  env_create:
      runs-on: ubuntu_latest
      steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Create .env file DEV
         if: ${{ github.ref_name == 'DEV'}}
         uses: SpicyPizza/create-envfile@v2.0.3
